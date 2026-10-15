@@ -1,26 +1,24 @@
-MY HABIT SPACE — PWA
+MY HABIT SPACE - PWA (GitHub Pages compatible)
 
-What this version includes
-- 15 default habits
-- Add/edit/pause habits
-- Daily check-ins
-- Current and best streaks
-- 7-day chart
-- 30-day performance
-- Backup/export and restore/import
-- Offline support
-- Installable as a PWA once hosted over HTTPS
+Upload ALL files and the icons folder to the ROOT of your GitHub repository.
+Required files:
+- index.html
+- app.js
+- styles.css
+- manifest.webmanifest
+- service-worker.js
+- icons/icon-192.png
+- icons/icon-512.png
 
-How to test on a computer
-1. Open a terminal in this folder.
-2. Run: python -m http.server 8000
-3. Open http://localhost:8000 in Chrome.
+GitHub Pages:
+Settings > Pages > Deploy from a branch > main > /(root)
 
-How to install on a phone
-The files must first be hosted on an HTTPS website (GitHub Pages, Cloudflare Pages, Netlify, etc.).
-Then open the URL on the phone:
-- Android/Chrome: menu > Add to Home screen / Install app
-- iPhone/Safari: Share > Add to Home Screen
+After updating an older deployment:
+1. Wait until GitHub Pages reports the deployment finished.
+2. On Android Chrome, close the old tab completely.
+3. Open the GitHub Pages URL again.
+4. Refresh once.
+5. If an old shortcut exists, remove that shortcut before testing installation.
+6. Look for the Install button inside the app or Chrome menu > Install app.
 
-Important
-This first version stores data locally on the device. Export a backup from Settings if you do not want to risk losing history when browser/app data is cleared.
+Your habit data stays in browser/device local storage. Updating these app files does not normally erase that data as long as the same GitHub Pages URL/origin is used.
