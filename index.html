@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#6C5CE7" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="My Habits" />
+  <title>My Habit Space</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">MY HABIT SPACE ✨</p>
+        <h1 id="greeting">Good day</h1>
+        <p id="todayLabel" class="muted"></p>
+      </div>
+      <button id="installBtn" class="install-btn hidden">Install</button>
+    </header>
+
+    <main>
+      <section id="todayView" class="view active">
+        <div class="hero-card">
+          <div class="hero-copy">
+            <span class="pill">TODAY</span>
+            <h2><span id="completedCount">0</span> / <span id="activeCount">15</span> completed</h2>
+            <p id="motivation">Complete one habit to start your momentum.</p>
+          </div>
+          <div class="ring-wrap">
+            <svg class="progress-ring" width="112" height="112" viewBox="0 0 112 112">
+              <circle class="ring-bg" cx="56" cy="56" r="46"></circle>
+              <circle id="ringProgress" class="ring-progress" cx="56" cy="56" r="46"></circle>
+            </svg>
+            <div class="ring-text"><span id="todayPercent">0</span>%</div>
+          </div>
+        </div>
+
+        <div class="section-head">
+          <div><p class="eyebrow">TODAY'S CHECK-IN</p><h3>Small wins</h3></div>
+          <button id="resetToday" class="text-btn">Reset today</button>
+        </div>
+        <div id="habitList" class="habit-list"></div>
+      </section>
+
+      <section id="statsView" class="view">
+        <div class="section-head"><div><p class="eyebrow">PROGRESS</p><h3>Your momentum</h3></div></div>
+        <div class="stats-grid">
+          <div class="stat-card pink"><span>Current best streak</span><strong id="bestCurrentStreak">0</strong><small>days</small></div>
+          <div class="stat-card teal"><span>30-day average</span><strong id="thirtyDayAvg">0%</strong><small>completion</small></div>
+          <div class="stat-card orange"><span>Best ever streak</span><strong id="bestEverStreak">0</strong><small>days</small></div>
+          <div class="stat-card blue"><span>Total check-ins</span><strong id="totalCheckins">0</strong><small>done</small></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h4>Last 7 days</h4><span id="weekAverage" class="badge">0%</span></div>
+          <div id="weekBars" class="week-bars"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h4>Habit performance</h4><span class="muted small">30 days</span></div>
+          <div id="performanceList"></div>
+        </div>
+      </section>
+
+      <section id="habitsView" class="view">
+        <div class="section-head"><div><p class="eyebrow">CUSTOMIZE</p><h3>Your 15 habits</h3></div><button id="addHabitBtn" class="primary-small">+ Add</button></div>
+        <div id="manageList" class="manage-list"></div>
+      </section>
+
+      <section id="settingsView" class="view">
+        <div class="section-head"><div><p class="eyebrow">SETTINGS</p><h3>Backup & restore</h3></div></div>
+        <div class="panel settings-panel">
+          <button id="exportBtn" class="settings-action">Export backup</button>
+          <label class="settings-action file-action">Import backup<input id="importInput" type="file" accept="application/json" hidden /></label>
+          <button id="resetAllBtn" class="settings-action danger">Reset all data</button>
+        </div>
+        <div class="panel">
+          <h4>About</h4>
+          <p class="muted">Your data stays on this device in this version. The app works offline once installed.</p>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav">
+      <button data-view="todayView" class="nav-item active"><span>✓</span><small>Today</small></button>
+      <button data-view="statsView" class="nav-item"><span>↗</span><small>Stats</small></button>
+      <button data-view="habitsView" class="nav-item"><span>☰</span><small>Habits</small></button>
+      <button data-view="settingsView" class="nav-item"><span>⚙</span><small>Settings</small></button>
+    </nav>
+  </div>
+
+  <dialog id="habitDialog">
+    <form method="dialog" id="habitForm">
+      <input type="hidden" id="habitId" />
+      <div class="dialog-head"><h3 id="dialogTitle">Add habit</h3><button value="cancel" class="icon-btn">×</button></div>
+      <label>Habit name<input id="habitName" maxlength="50" required /></label>
+      <label>Category<select id="habitCategory"><option>Health</option><option>Learning</option><option>Study</option><option>Productivity</option><option>Wellbeing</option><option>Spiritual</option><option>Personal</option><option>Other</option></select></label>
+      <label>Target per week<input id="habitTarget" type="number" min="1" max="7" value="7" required /></label>
+      <label class="toggle-row"><span>Active</span><input id="habitActive" type="checkbox" checked /></label>
+      <div class="dialog-actions"><button value="cancel" class="secondary">Cancel</button><button id="saveHabit" value="default" class="primary">Save habit</button></div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
